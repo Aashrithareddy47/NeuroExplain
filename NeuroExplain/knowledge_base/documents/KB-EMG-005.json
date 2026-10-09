@@ -1,0 +1,15 @@
+{
+  "id": "KB-EMG-005",
+  "title": "Practice Guideline: Electrodiagnostic Services in Patients With Suspected Carpal Tunnel Syndrome",
+  "publisher": "American Association of Neuromuscular & Electrodiagnostic Medicine (AANEM) / Muscle & Nerve",
+  "year": 2016,
+  "pmid": "27129528",
+  "doi": "10.1002/mus.25148",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/27129528/",
+  "category": "Neuromuscular & EMG/NCS",
+  "summary": "Diagnostic criteria for median neuropathy at the carpal tunnel, distinguishing it from cervical radiculopathy and ulnar neuropathy.",
+  "chunks": [
+    "Median Nerve Conduction Abnormalities: Carpal tunnel syndrome (CTS) is diagnosed electrophysiologically by prolongation of distal sensory latency (>3.5 ms across the wrist) and distal motor latency (>4.2 ms) of the median nerve, while ulnar nerve parameters remain normal.",
+    "Needle EMG Examination in Neuropathy: Needle electromyography evaluates muscle response to assess active nerve root irritation or motor axon loss. The absence of fibrillations or positive sharp waves, combined with normal motor unit action potential (MUAP) morphology, indicates intact nerve axon continuity without active denervation."
+  ]
+}

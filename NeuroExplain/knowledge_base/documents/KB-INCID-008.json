@@ -1,0 +1,15 @@
+{
+  "id": "KB-INCID-008",
+  "title": "Incidental Findings on Brain MRI in the General Population: A Systematic Review and Meta-analysis",
+  "publisher": "British Medical Journal (BMJ) / Cochrane Database",
+  "year": 2018,
+  "pmid": "29903722",
+  "doi": "10.1136/bmj.k2247",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/29903722/",
+  "category": "Incidental Neuroimaging Findings",
+  "summary": "Prevalence and clinical significance of incidental findings like paranasal sinus thickening, pineal cysts, arachnoid cysts, and developmental venous anomalies.",
+  "chunks": [
+    "Maxillary and Paranasal Sinus Thickening: Paranasal sinus mucosal thickening (e.g. maxillary or ethmoid sinus mucous membrane thickening) is seen in over 30% of brain MRIs as an incidental non-neurological finding. It relates to mild seasonal allergies, previous cold, or rhinosinusitis and does not affect the brain parenchyma or nervous system.",
+    "Arachnoid Cysts and Benign Variants: Asymptomatic arachnoid cysts, cavum septum pellucidum, and developmental venous anomalies (DVAs) are congenital anatomic variants found incidentally. They do not represent brain damage or progressive tumors."
+  ]
+}

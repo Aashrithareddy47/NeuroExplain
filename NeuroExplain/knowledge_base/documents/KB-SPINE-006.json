@@ -1,0 +1,15 @@
+{
+  "id": "KB-SPINE-006",
+  "title": "Lumbar and Cervical Spine MRI Terminology and Clinical Concordance",
+  "publisher": "North American Spine Society (NASS) / American Society of Spine Radiology (ASSR)",
+  "year": 2014,
+  "pmid": "25444654",
+  "doi": "10.1016/j.spinee.2014.08.007",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/25444654/",
+  "category": "Spinal Neuropathies & Disc Disease",
+  "summary": "Standardized classification of disc bulges, protrusions, extrusions, canal stenosis, and neural foraminal narrowing.",
+  "chunks": [
+    "Disc Bulge vs Herniation: A disc bulge involves generalized circumferential extension of disc tissue beyond the vertebral edges (>50% circumference) and is often an asymptomatic degenerative change. A focal protrusion involves <25% circumference and is clinically relevant only if it compresses an exiting nerve root (producing radicular symptoms).",
+    "Neural Foraminal Stenosis and Radiculopathy: Narrowing of the exit canals (neuroforamina) can irritate cervical or lumbar nerve roots. Asymptomatic MRI findings of disc degenerative changes are present in over 60% of healthy individuals over 40 and must always be correlated with clinical neurological examination."
+  ]
+}

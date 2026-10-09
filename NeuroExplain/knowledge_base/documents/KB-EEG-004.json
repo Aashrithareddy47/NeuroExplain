@@ -1,0 +1,15 @@
+{
+  "id": "KB-EEG-004",
+  "title": "American Clinical Neurophysiology Society's Standardized EEG Terminology and Clinical Interpretation",
+  "publisher": "American Clinical Neurophysiology Society (ACNS) / Journal of Clinical Neurophysiology",
+  "year": 2021,
+  "pmid": "33475283",
+  "doi": "10.1097/WNP.0000000000000806",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/33475283/",
+  "category": "Electroencephalography & Seizures",
+  "summary": "Clinical guidance for interpreting routine, sleep, and ambulatory electroencephalography (EEG) recordings.",
+  "chunks": [
+    "Posterior Dominant Alpha Rhythm: In a normal awake adult, the posterior dominant rhythm is typically between 8.5 Hz and 12 Hz over the occipital regions with eyes closed, attenuating immediately with eye opening (reactivity). This is a hallmark sign of healthy cortical function and wakefulness.",
+    "Epileptiform Discharges vs. Benign Transients: True epileptiform activity involves sharp waves (<200 ms) or spike-and-wave discharges with a distinct physiological after-coming slow wave and disruptive field. Hyperventilation and photic stimulation are standard activation procedures to test seizure thresholds. The statement 'No epileptiform activity or electrographic seizures' signifies a normal electrical baseline during the recording window."
+  ]
+}

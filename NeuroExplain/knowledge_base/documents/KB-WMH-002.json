@@ -1,0 +1,15 @@
+{
+  "id": "KB-WMH-002",
+  "title": "Standards for Reporting Vascular Changes on Neuroimaging (STRIVE): White Matter Hyperintensities",
+  "publisher": "The Lancet Neurology / STandards for ReportIng Vascular changes on nEuroimaging",
+  "year": 2013,
+  "pmid": "23867200",
+  "doi": "10.1016/S1474-4422(13)70124-8",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/23867200/",
+  "category": "White Matter & Small Vessel Disease",
+  "summary": "Standardized definitions for white matter hyperintensities (WMH) of presumed vascular origin, lacunes, and perivascular spaces.",
+  "chunks": [
+    "White Matter Hyperintensities (WMH) of presumed vascular origin: Hyperintense signal on T2-weighted or FLAIR MRI sequences appearing in the cerebral white matter. Fazekas Scale classifies WMH from Grade 0 (absent) to Grade 3 (confluent large areas). Punctate frontal subcortical lesions (Grade 1) are very frequent incidental findings in asymptomatic adults over 40 and individuals with chronic migraine.",
+    "Patient Communication for White Matter Changes: A finding of 'scattered punctate T2/FLAIR hyperintensities' does not mean irreversible disability or dementia. It reflects microscopic small-vessel stiffening or past migraine vasospasm. Primary management focuses on cardiovascular risk control: managing blood pressure, cholesterol, blood glucose, smoking cessation, and routine aerobic exercise."
+  ]
+}

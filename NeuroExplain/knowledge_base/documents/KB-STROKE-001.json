@@ -1,0 +1,15 @@
+{
+  "id": "KB-STROKE-001",
+  "title": "Guidelines for the Early Management of Patients With Acute Ischemic Stroke: 2019 Update",
+  "publisher": "American Heart Association / American Stroke Association (Stroke Journal)",
+  "year": 2019,
+  "pmid": "31662037",
+  "doi": "10.1161/STR.0000000000000211",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/31662037/",
+  "category": "Ischemic Stroke & Cerebrovascular",
+  "summary": "Clinical protocol for identifying acute ischemic infarction versus microvascular changes on brain MRI. Diffusion-weighted imaging (DWI) paired with ADC maps is the gold standard for acute cytotoxic edema.",
+  "chunks": [
+    "Diffusion-Weighted Imaging (DWI) and Apparent Diffusion Coefficient (ADC) in acute brain ischemia: Acute ischemic stroke is characterized by restricted Brownian motion of water molecules caused by cytotoxic edema, appearing hyperintense (bright) on DWI and hypointense (dark) on ADC maps. If a brain MRI shows 'No diffusion restriction on DWI' or 'No acute territorial infarction', it confirms the absence of an acute arterial blockage or fresh brain tissue death at the time of scanning.",
+    "Chronic Microvascular Ischemic Changes vs Acute Infarction: Punctate T2 and FLAIR hyperintensities in the deep periventricular or subcortical white matter without corresponding DWI restriction represent chronic microvascular changes (arteriolosclerosis) rather than acute stroke. These are commonly associated with age, hypertension, diabetes, or migraine diathesis and do not indicate an emergency acute infarct."
+  ]
+}
