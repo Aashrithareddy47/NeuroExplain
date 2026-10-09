@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageSquare, Send, Sparkles, BookOpen, Loader2, Bot, User, ChevronRight } from 'lucide-react';
+import { MessageSquare, Send, Sparkles, BookOpen, Loader2, Bot, User, ChevronRight, RefreshCw, AlertCircle } from 'lucide-react';
 import { translations } from '../i18n/translations';
 import { askFollowUpQuestion } from '../services/api';
 
@@ -54,7 +54,12 @@ export default function FollowUpChat({ reportId, language }) {
     } catch (err) {
       setMessages((prev) => [
         ...prev,
-        { sender: 'bot', text: 'Sorry, I encountered an issue generating an answer. Please try asking again.' }
+        {
+          sender: 'bot',
+          text: err.message || 'Sorry, I encountered an issue generating an answer. Please try asking again.',
+          isError: true,
+          lastQuestion: textToSend
+        }
       ]);
     } finally {
       setIsLoading(false);
@@ -120,10 +125,34 @@ export default function FollowUpChat({ reportId, language }) {
                 className={`p-4 rounded-2xl max-w-xl text-xs sm:text-sm leading-relaxed ${
                   msg.sender === 'user'
                     ? 'bg-navy-900 text-white rounded-tr-none'
+                    : msg.isError
+                    ? 'bg-rose-50 border border-rose-200 text-rose-900 rounded-tl-none space-y-3'
                     : 'bg-slate-50 border border-slate-200 text-slate-800 rounded-tl-none space-y-3'
                 }`}
               >
-                <p>{msg.text}</p>
+                {msg.isError && (
+                  <div className="flex items-center space-x-1.5 text-rose-700 font-semibold text-xs">
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>Communication Notice</span>
+                  </div>
+                )}
+
+                <p className="whitespace-pre-line">{msg.text}</p>
+
+                {/* Retry Button for Failed Messages */}
+                {msg.isError && msg.lastQuestion && (
+                  <div className="pt-2">
+                    <button
+                      type="button"
+                      disabled={isLoading}
+                      onClick={() => handleSend(msg.lastQuestion)}
+                      className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-semibold shadow-sm transition"
+                    >
+                      <RefreshCw className="w-3.5 h-3.5" />
+                      <span>Retry Question</span>
+                    </button>
+                  </div>
+                )}
 
                 {/* Grounded Sources */}
                 {msg.sources?.length > 0 && (
@@ -137,6 +166,26 @@ export default function FollowUpChat({ reportId, language }) {
                         "{s.relevant_excerpt?.slice(0, 160)}..." — <span className="font-semibold text-navy-900">{s.title}</span>
                       </div>
                     ))}
+                  </div>
+                )}
+
+                {/* Suggested Follow-up Questions */}
+                {msg.suggestedFollowups?.length > 0 && (
+                  <div className="pt-2 border-t border-slate-200 text-[11px] space-y-1.5">
+                    <span className="font-semibold text-slate-700 block">Suggested next questions:</span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {msg.suggestedFollowups.map((sf, sfIdx) => (
+                        <button
+                          key={sfIdx}
+                          type="button"
+                          disabled={isLoading}
+                          onClick={() => handleSend(sf)}
+                          className="text-left text-[11px] bg-white hover:bg-hospital-50 hover:border-hospital-300 border border-slate-200 text-slate-700 px-2.5 py-1 rounded-lg transition"
+                        >
+                          {sf}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

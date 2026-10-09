@@ -147,7 +147,7 @@ class RAGPipeline:
         if not query_text:
             query_text = extracted_text[:400]
 
-        retrieved_sources = medical_retriever.retrieve(query_text, k=4)
+        retrieved_sources = medical_retriever.retrieve(query_text, k=4, min_similarity=0.30)
         report["retrieved_sources"] = retrieved_sources
 
         # 3. Grounded LLM Generation
@@ -172,20 +172,30 @@ class RAGPipeline:
         language: str = "en"
     ) -> FollowUpQuestionResponse:
         """Answers a follow-up question in the context of the uploaded report and knowledge base."""
+        if not question or not question.strip():
+            raise ValueError("Question cannot be empty.")
+
+        clean_question = question.strip()
         report = self._reports_store.get(report_id)
-        if not report:
+        if not report and report_id not in ("general", "educational", "default", "none"):
             raise ValueError(f"Report '{report_id}' not found or expired.")
 
-        extracted_text = report["extracted_text"]
+        extracted_text = report["extracted_text"] if report else ""
         
-        # Retrieve relevant passages specifically for the question
-        question_query = f"{question} {extracted_text[:200]}"
-        retrieved_sources = medical_retriever.retrieve(question_query, k=3)
+        # Retrieve relevant passages specifically for the user's question, applying the relevance threshold
+        retrieved_sources = medical_retriever.retrieve(clean_question, k=3, min_similarity=0.35)
+
+        # If the user asked a meta-question about their report (e.g. "explain terms", "questions for doctor")
+        # and no sources matched the raw question string, retrieve supporting guidelines for the report's clinical topic
+        if not retrieved_sources and report:
+            report_topic_query = f"{report.get('sections', {}).get('impression', '')} {report.get('sections', {}).get('findings', '')[:200]}".strip()
+            if report_topic_query:
+                retrieved_sources = medical_retriever.retrieve(report_topic_query, k=2, min_similarity=0.30)
 
         return llm_service.answer_followup_question(
             report_id=report_id,
             report_text=extracted_text,
-            question=question,
+            question=clean_question,
             retrieved_sources=retrieved_sources,
             language=language
         )

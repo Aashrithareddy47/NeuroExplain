@@ -4,6 +4,7 @@ Provides endpoints for health check, report upload, analysis, follow-up Q&A, and
 """
 
 from typing import List
+# pyrefly: ignore [missing-import]
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, status, Depends
 from app.models.schemas import (
     HealthResponse,
@@ -103,6 +104,12 @@ async def ask_followup_question(
     """
     Answers a patient follow-up question in the context of the report and retrieved medical evidence.
     """
+    if not request.question or not request.question.strip():
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Question cannot be empty."
+        )
+
     try:
         response = rag_pipeline.answer_question(
             report_id=report_id,
@@ -111,7 +118,10 @@ async def ask_followup_question(
         )
         return response
     except ValueError as ve:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(ve))
+        err_msg = str(ve)
+        if "not found" in err_msg.lower() or "expired" in err_msg.lower():
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=err_msg)
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=err_msg)
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

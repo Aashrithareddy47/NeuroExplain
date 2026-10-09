@@ -44,8 +44,10 @@ class DocumentProcessor:
     def extract_text_from_pdf(self, file_path: str) -> Dict[str, Any]:
         """
         Extracts text from PDF using PyMuPDF.
-        Detects if pages are scanned (low text yield) to trigger OCR.
+        Detects if pages are scanned (low text yield) and runs OCR on rendered pixmaps.
         """
+        from app.services.ocr_service import ocr_service
+        
         doc = fitz.open(file_path)
         page_count = len(doc)
         full_text_list = []
@@ -57,13 +59,26 @@ class DocumentProcessor:
             page = doc[page_num]
             text = page.get_text("text").strip()
             char_count = len(text)
-            total_chars += char_count
             
             # If text is extremely short for a full page, it could be a scanned image
-            is_scanned = char_count < 50
+            is_scanned = char_count < 30
             if is_scanned:
                 has_scanned_pages = True
+                # Attempt OCR on rendered page pixmap
+                try:
+                    pix = page.get_pixmap(dpi=150)
+                    temp_img_path = os.path.join(self.uploads_dir, f"temp_page_{uuid.uuid4().hex[:8]}.png")
+                    pix.save(temp_img_path)
+                    ocr_res = ocr_service.extract_text_from_image(temp_img_path)
+                    ocr_text = ocr_res.get("extracted_text", "").strip()
+                    self.cleanup_file(temp_img_path)
+                    if len(ocr_text) > char_count:
+                        text = ocr_text
+                        char_count = len(text)
+                except Exception:
+                    pass
 
+            total_chars += char_count
             pages_data.append({
                 "page_number": page_num + 1,
                 "text": text,
@@ -81,7 +96,8 @@ class DocumentProcessor:
             "total_character_count": total_chars,
             "pages": pages_data,
             "extracted_text": combined_text,
-            "is_scanned": has_scanned_pages and total_chars < 100,
+            "is_scanned": has_scanned_pages,
+            "is_empty": total_chars == 0,
         }
 
     def cleanup_file(self, file_path: str) -> bool:
